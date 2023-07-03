@@ -2,8 +2,20 @@ import re,sys,random,time,os
 from datetime import date, datetime
 from tqdm import tqdm
 
+total_iterations = 5
 now = datetime.now()
 datetime = now.strftime("%B %d, %Y 1/ %H:%M:%S")
+print ("=======================================================")
+print ("||                                                   ||")
+print ("||                                                   ||")
+print ("||                                                   ||")
+print ("||                                                   ||")
+print ("||                                                   ||")
+print ("||                                                   ||")
+print ("=======================================================")
+print ("")
+for i in tqdm(range(total_iterations), desc="[+] Loading ", unit="ms"):
+    time.sleep(0.1)
 print("TODAY'S DATE => ", datetime)
 
 print("==")
@@ -24,10 +36,8 @@ print("==")
 sv = input("[+] Name File to Save Live Numbers {Always append .txt}: ")
 print("==")
 lent = 4
-#lent = int(input('Length Remaining Digits [ 7 FOR USA ] : '))
-#print('-'*33)
 mow = str('9'*lent)
-total_iterations = 5
+
 
 # Open the file in write mode and truncate it
 with open("gen.txt", "w") as file:
@@ -58,7 +68,7 @@ def gen():
 gen()
         
 def check_carrier(string):
-    Verizon = ["Verizon", "Cellco"]
+    Verizon = ["Cellco"]
     Att = ["At&t", "New Cingular Wireless"]
     Tmobile = ["T-mobile", "Sprint Spectrum"]
 
@@ -85,7 +95,7 @@ def verify():
                 if len(parts) >= 5:
                     content = parts[4]
                 #if line1.strip() == i1.strip():
-                if line1.strip() == i1.strip() and "Verizon" in i:
+                if line1.strip() == i1.strip() and (("Cellco" in i) or ("T-Mobile" in i)):
                     with open(sv, 'a') as save:
                         save.write("+1" + line + "\n")
                         print ("[+] Found " + line + ": " + content.strip())
