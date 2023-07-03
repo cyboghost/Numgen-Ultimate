@@ -63,7 +63,7 @@ def check_carrier(string):
         
 #num = open("gen.txt", mode='r', encoding='utf-8').read().split('\n')
 
-with open("gen.txt", "r") as num1, open("infoed.txt", "r") as car1:
+with open("gen.txt", "r") as num1, open("carriers.txt", "r") as car1:
     num = num1.read().split('\n')
     car = car1.read().split('\n')
 def verify():
