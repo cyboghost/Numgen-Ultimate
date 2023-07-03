@@ -61,7 +61,7 @@ for i in tqdm(range(total_iterations), desc="[+] Loading ", unit="ms"):
 
 
 def gen():
-    for i in range(0,n):
+    for i in range(0,n*20):
         first = (random.choice(area) + random.choice(area2) + str(random.randint(0,int(mow))).zfill(lent))
         with open('gen.txt', 'a') as save:
             save.write(first + "\n")
@@ -93,23 +93,30 @@ with open("gen.txt", "r") as num1, open("carriers.txt", "r") as car1:
     num = num1.read().split('\n')
     car = car1.read().split('\n')
 def verify():
-        for line in num:
-            for i in car:            
-                line1 = line[0:6]
-                i1 = i[3:6] + i[7:11]
-                parts = i.split(':')
-                if len(parts) >= 5:
-                    content = parts[4]
-                #if line1.strip() == i1.strip():
-                if line1.strip() == i1.strip() and (("Cellco" in i) or ("T-Mobile" in i)):
-                    with open(sv, 'a') as save:
-                        save.write("+1" + line + "\n")
-                        print ("[+] Found " + line + ": " + content.strip())
-                        result = check_carrier(content.strip())
-                        if result:
-                            print ("[+] " + line + " >> " + result)
-                            print("==")
+    hit_count = 0
+    for line in num:
+        found = False
+        for i in car:            
+            line1 = line[0:6]
+            i1 = i[3:6] + i[7:11]
+            parts = i.split(':')
+            if len(parts) >= 5:
+                content = parts[4]
+            #if line1.strip() == i1.strip():
+            if line1.strip() == i1.strip() and (("Cellco" in i) or ("T-Mobile" in i)):
+                hit_count += 1
+                with open(sv, 'a') as save:
+                    save.write("+1" + line + "\n")
+                    print ("[+] Found " + line + ": " + content.strip())
+                    result = check_carrier(content.strip())
+                    if result:
+                        print ("[+] " + line + " >> " + result)
+                        print("==")
+                        found = True
+                        break
                             
+        if hit_count == n:
+            break
 verify()
 
 def remove_duplicates(filename):
