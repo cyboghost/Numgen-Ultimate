@@ -1,5 +1,6 @@
 import re,sys,random,time,os
 from datetime import date, datetime
+from tqdm import tqdm
 
 now = datetime.now()
 datetime = now.strftime("%B %d, %Y 1/ %H:%M:%S")
@@ -20,23 +21,27 @@ area2 = ["845","408","513","764","832","953","742","695","218","736","243","661"
 #print("==")
 n = int(input("[+] Enter Amount of numbers to Generate: "))
 print("==")
-sv = input("[+] TXT file to save to: ")
+sv = input("[+] Name File to Save Live Numbers {Always append .txt}: ")
 print("==")
 lent = 4
 #lent = int(input('Length Remaining Digits [ 7 FOR USA ] : '))
 #print('-'*33)
 mow = str('9'*lent)
+total_iterations = 5
 
 # Open the file in write mode and truncate it
 with open("gen.txt", "w") as file:
     file.truncate()
 
-print("Content of the file deleted.")
+print("[+] Existing Content of Gen Deleted")
 
 with open(sv, "w") as file:
     file.truncate()
 
-print("Content of the file deleted.")
+print("==")
+
+for i in tqdm(range(total_iterations), desc="[+] Loading ", unit="ms"):
+    time.sleep(0.1)
 
 
 def gen():
@@ -44,7 +49,12 @@ def gen():
         first = (random.choice(area) + random.choice(area2) + str(random.randint(0,int(mow))).zfill(lent))
         with open('gen.txt', 'a') as save:
             save.write(first + "\n")
-    print('Phone Numbers Saved In gen.txt')
+    print('[+] Random Phone Numbers Saved In gen.txt')
+    print('==')
+    time.sleep(1)
+    print('[+] Checking For Live Phone Numbers Now')
+    print('==')
+    time.sleep(1)
 gen()
         
 def check_carrier(string):
@@ -101,6 +111,8 @@ def remove_duplicates(filename):
 # Example usage
 filename = sv
 remove_duplicates(filename)
-                        
-print("Verified Numbers Saved In " + sv)
+
+for i in tqdm(range(total_iterations), desc="[+] Loading ", unit="ms"):
+    time.sleep(0.1)
+print("[+] Verified Numbers Saved In " + sv)
 print("==")
