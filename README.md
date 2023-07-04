@@ -5,8 +5,9 @@ Generate Live Verizon Phone Numbers from carrier.<br>==<br>
 [+] It would generate 100% Live Verizon Phone numbers with no issues.<br>
 [+] I take no responsibility with what you use the numbers for.<br>==<br>
 Installation<br>
-[+] git clone https://github.com/cyboghost/Numgen-Ultimate.git<br>
-[+] cd Numgen-Ultimate<br>
-[+] python3 livegen.py
+`git clone https://github.com/cyboghost/Numgen-Ultimate.git`<br>
+`cd Numgen-Ultimate`<br>
+`pip install -r requirements.txt`<br>
+`python3 livegen.py`
 <br><br>
 [+] Telegram @Cyboghost
